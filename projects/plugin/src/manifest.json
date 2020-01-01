@@ -1,0 +1,19 @@
+{
+  "$schema": "../../../node_modules/@wako-app/mobile-sdk/dist/manifest-schema.json",
+  "version": "1.0.0",
+  "id": "plugin.watchnow",
+  "name": "Watch Now",
+  "description": "Add buttons to watch your movie or tv show on a streaming platform like iTunes, Netflix, Amazon...",
+  "author": "wako",
+  "actions": [
+    "movies",
+    "episodes"
+  ],
+  "entryPoint": "/plugin.js",
+  "languages": {
+    "en": "/i18n/en.json"
+  },
+  "changeLogs": {
+    "1.0.0": "Initial Version"
+  }
+}

@@ -1,0 +1,8 @@
+<div class="container">
+  <ion-spinner *ngIf="loading" class="center"></ion-spinner>
+  <ion-text *ngIf="!loading && sources.length === 0">{{'noSourceFound'|translate}}</ion-text>
+  <div *ngFor="let source of sources" class="button ion-activatable {{source.id}}" (click)="goTo(source)">
+    <span>{{source.name|titlecase}}</span>
+    <ion-ripple-effect></ion-ripple-effect>
+  </div>
+</div>
