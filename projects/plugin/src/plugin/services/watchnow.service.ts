@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Episode, Movie, Show, WakoHttpRequestService } from '@wako-app/mobile-sdk';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 export interface Source {
   id: string;
@@ -12,7 +13,6 @@ export interface Source {
 
 @Injectable()
 export class WatchnowService {
-
   private getNameFromId(id: string) {
     switch (id) {
       case 'apple_itunes':
@@ -22,8 +22,26 @@ export class WatchnowService {
       case 'netflix':
         return 'Netflix';
       default:
-        return id.replace(/_/ig, ' ');
+        return id.replace(/_/gi, ' ');
     }
+  }
+
+  getNetflixUrl(source: Source) {
+    return WakoHttpRequestService.get<string>(source.url, null, '3d').pipe(
+      map(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const node = doc.querySelector<HTMLMetaElement>('meta[property="al:ios:url"]');
+
+        if (node && node.getAttribute('content')) {
+          const id = node.getAttribute('content').split('/').pop().split('?').shift();
+
+          return `http://www.netflix.com/watch/${id}`;
+        }
+        return source.url;
+      })
+    );
   }
 
   getSources(options: { movie?: Movie; show?: Show; episode?: Episode }) {
@@ -55,6 +73,19 @@ export class WatchnowService {
         }
 
         return sources;
+      }),
+      switchMap(sources => {
+        if (sources.length === 1 && sources[0].id === 'netflix') {
+          // Get netflix id
+          return this.getNetflixUrl(sources[0]).pipe(
+            map(netflixUrl => {
+              sources[0].url = netflixUrl;
+              return sources;
+            })
+          );
+        }
+
+        return of(sources);
       })
     );
   }
