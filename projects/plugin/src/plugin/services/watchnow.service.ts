@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Episode, Movie, Show, WakoHttpRequestService } from '@wako-app/mobile-sdk';
-import { map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Episode, Movie, Show, WakoHttpRequestService} from '@wako-app/mobile-sdk';
+import {map, switchMap} from 'rxjs/operators';
+import {forkJoin, Observable, of} from 'rxjs';
 
 export interface Source {
   id: string;
@@ -9,6 +9,7 @@ export interface Source {
   url: string;
   country: string;
   logoUrl: string;
+  intentUrl?: string;
 }
 
 @Injectable()
@@ -26,7 +27,7 @@ export class WatchnowService {
     }
   }
 
-  getNetflixUrl(source: Source) {
+  private getNetflixUrl(source: Source) {
     return WakoHttpRequestService.get<string>(source.url, null, '3d').pipe(
       map(html => {
         const parser = new DOMParser();
@@ -42,6 +43,28 @@ export class WatchnowService {
         return source.url;
       })
     );
+  }
+
+
+  private setKnownPlatformUrl(sources: Source[]) {
+    const obss: Observable<Source>[] = [];
+
+    sources.forEach(source => {
+      if (source.id === 'netflix') {
+        obss.push(this.getNetflixUrl(sources[0]).pipe(
+          map(netflixUrl => {
+            source.url = netflixUrl;
+            return source;
+          })
+        ));
+      } else {
+        obss.push(of(source));
+      }
+
+    });
+
+    return forkJoin(obss);
+
   }
 
   getSources(options: { movie?: Movie; show?: Show; episode?: Episode }) {
@@ -75,17 +98,7 @@ export class WatchnowService {
         return sources;
       }),
       switchMap(sources => {
-        if (sources.length === 1 && sources[0].id === 'netflix') {
-          // Get netflix id
-          return this.getNetflixUrl(sources[0]).pipe(
-            map(netflixUrl => {
-              sources[0].url = netflixUrl;
-              return sources;
-            })
-          );
-        }
-
-        return of(sources);
+        return this.setKnownPlatformUrl(sources);
       })
     );
   }
