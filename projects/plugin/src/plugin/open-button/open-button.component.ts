@@ -18,26 +18,24 @@ export class OpenButtonComponent implements OnInit {
   sources: Source[] = [];
   loading = true;
 
-  constructor(private browserService: BrowserService, private watchnowService: WatchnowService) {
-
-  }
+  constructor(private watchnowService: WatchnowService) {}
 
   ngOnInit(): void {
-    this.watchnowService.getSources({
-      movie: this.movie,
-      show: this.show,
-      episode: this.episode
-    })
-      .pipe(finalize(() => this.loading = false))
-      .subscribe(sources => {
+    this.watchnowService
+      .getSources({
+        movie: this.movie,
+        show: this.show,
+        episode: this.episode
+      })
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe((sources) => {
         this.sources = sources;
         console.log({ sources });
       });
   }
 
-
   goTo(source: Source) {
     logEvent('addon_watchnow', { type: this.type, source: source.id });
-    this.browserService.open(source.url, false);
+    BrowserService.open(source.url, false);
   }
 }

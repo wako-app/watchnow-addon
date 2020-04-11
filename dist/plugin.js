@@ -1,1 +1,1109 @@
-!function(n,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("ng.common"),require("tslib"),require("ng.forms"),require("ng.router"),require("ngx-translate.core"),require("rxjs"),require("wako-app.mobile-sdk"),require("ng.core"),require("ionic.angular")):"function"==typeof define&&define.amd?define(["ng.common","tslib","ng.forms","ng.router","ngx-translate.core","rxjs","wako-app.mobile-sdk","ng.core","ionic.angular"],t):"object"==typeof exports?exports.plugin=t(require("ng.common"),require("tslib"),require("ng.forms"),require("ng.router"),require("ngx-translate.core"),require("rxjs"),require("wako-app.mobile-sdk"),require("ng.core"),require("ionic.angular")):n.plugin=t(n["ng.common"],n.tslib,n["ng.forms"],n["ng.router"],n["ngx-translate.core"],n.rxjs,n["wako-app.mobile-sdk"],n["ng.core"],n["ionic.angular"])}("undefined"!=typeof self?self:this,(function(n,t,e,r,o,i,u,s,l){return function(n){var t={};function e(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return n[r].call(o.exports,o,o.exports,e),o.l=!0,o.exports}return e.m=n,e.c=t,e.d=function(n,t,r){e.o(n,t)||Object.defineProperty(n,t,{enumerable:!0,get:r})},e.r=function(n){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(n,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(n,"__esModule",{value:!0})},e.t=function(n,t){if(1&t&&(n=e(n)),8&t)return n;if(4&t&&"object"==typeof n&&n&&n.__esModule)return n;var r=Object.create(null);if(e.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:n}),2&t&&"string"!=typeof n)for(var o in n)e.d(r,o,(function(t){return n[t]}).bind(null,o));return r},e.n=function(n){var t=n&&n.__esModule?function(){return n.default}:function(){return n};return e.d(t,"a",t),t},e.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},e.p="",e(e.s=0)}({0:function(n,t,e){n.exports=e("zUnb")},"0S4P":function(t,e){t.exports=n},"17wl":function(n,e){n.exports=t},"3xDq":function(n,t){n.exports=e},FsH7:function(n,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=e("17wl"),o=e("vOrQ"),i=e("z1lQ"),u=e("TGDj");t.ToastService=function(){function n(n,t){this.toastCtrl=n,this.translateService=t}return n.prototype.simpleMessage=function(n,t,e,r){var o=this;void 0===e&&(e=2e3),void 0===r&&(r="top"),this.translateService.get(n,t).subscribe((function(n){o.toastCtrl.create({message:n,mode:"ios",position:r,duration:e}).then((function(n){n.present()}))}))},r.__decorate([o.Injectable(),r.__metadata("design:paramtypes",[i.ToastController,u.TranslateService])],n)}()},GoKE:function(n,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=e("17wl"),o=e("vOrQ"),i=e("z1lQ");t.BrowserService=function(){function n(n){this.platform=n}return n.prototype.open=function(n,t){if(void 0===t&&(t=!0),!1!==this.platform.is("cordova")&&t){var e=document.body.classList.contains("dark");SafariViewController.isAvailable((function(t){t?SafariViewController.show({url:n,hidden:!1,animated:!0,transition:"curl",enterReaderModeIfAvailable:!1,barColor:e?"#000000":"#1f2d3f",tintColor:e?"#000000":"#1f2d3f",controlTintColor:"#ffffff"}):window.open(n,"_system","location=yes")}))}else window.open(n,"_system","location=yes")},r.__decorate([o.Injectable(),r.__metadata("design:paramtypes",[i.Platform])],n)}()},JAnZ:function(n,t){n.exports=r},TGDj:function(n,t){n.exports=o},Vgaj:function(n,t){n.exports=i},doF0:function(n,t){n.exports=u},vOrQ:function(n,t){n.exports=s},z1lQ:function(n,t){n.exports=l},zUnb:function(n,t,e){"use strict";e.r(t);var r=e("17wl"),o=e("doF0"),i=e("TGDj");function u(){for(var n=[],t=0;t<arguments.length;t++)n[t]=arguments[t];Object(o.wakoLog)("plugin.tmdb",n)}var s=function(n){function t(t){var e=n.call(this)||this;return e.translate=t,e}return r.__extends(t,n),t.prototype.initialize=function(){u("plugin initialized")},t.prototype.afterInstall=function(){u("plugin installed")},t.prototype.afterUpdate=function(){u("plugin updated")},t.prototype.setTranslation=function(n,t){this.translate.setDefaultLang(n),this.translate.use(n),this.translate.setTranslation(n,t)},t.prototype.customAction=function(n,t){},t}(o.PluginBaseService),l=function(n){function t(){return null!==n&&n.apply(this,arguments)||this}return r.__extends(t,n),t.prototype.setMovie=function(n){this.movie=n},t}(o.MovieDetailBaseComponent),c=function(n){function t(){return null!==n&&n.apply(this,arguments)||this}return r.__extends(t,n),t.prototype.setShowEpisode=function(n,t){this.show=n,this.episode=t},t}(o.EpisodeDetailBaseComponent),a=function(n){function t(){return null!==n&&n.apply(this,arguments)||this}return r.__extends(t,n),t.prototype.setShow=function(n){this.show=n},t}(o.ShowDetailBaseComponent),p=e("vOrQ");function f(n){return"function"==typeof n}var d=!1,h={Promise:void 0,set useDeprecatedSynchronousErrorHandling(n){d=n},get useDeprecatedSynchronousErrorHandling(){return d}};function b(n){setTimeout((function(){throw n}),0)}var y={closed:!0,next:function(n){},error:function(n){if(h.useDeprecatedSynchronousErrorHandling)throw n;b(n)},complete:function(){}},m=function(){return Array.isArray||function(n){return n&&"number"==typeof n.length}}();function v(n){return null!==n&&"object"==typeof n}var g=function(){function n(n){return Error.call(this),this.message=n?n.length+" errors occurred during unsubscription:\n"+n.map((function(n,t){return t+1+") "+n.toString()})).join("\n  "):"",this.name="UnsubscriptionError",this.errors=n,this}return n.prototype=Object.create(Error.prototype),n}(),_=function(){function n(n){this.closed=!1,this._parentOrParents=null,this._subscriptions=null,n&&(this._unsubscribe=n)}return n.prototype.unsubscribe=function(){var t;if(!this.closed){var e=this._parentOrParents,r=this._unsubscribe,o=this._subscriptions;if(this.closed=!0,this._parentOrParents=null,this._subscriptions=null,e instanceof n)e.remove(this);else if(null!==e)for(var i=0;i<e.length;++i)e[i].remove(this);if(f(r))try{r.call(this)}catch(l){t=l instanceof g?w(l.errors):[l]}if(m(o)){i=-1;for(var u=o.length;++i<u;){var s=o[i];if(v(s))try{s.unsubscribe()}catch(l){t=t||[],l instanceof g?t=t.concat(w(l.errors)):t.push(l)}}}if(t)throw new g(t)}},n.prototype.add=function(t){var e=t;if(!t)return n.EMPTY;switch(typeof t){case"function":e=new n(t);case"object":if(e===this||e.closed||"function"!=typeof e.unsubscribe)return e;if(this.closed)return e.unsubscribe(),e;if(!(e instanceof n)){var r=e;(e=new n)._subscriptions=[r]}break;default:throw new Error("unrecognized teardown "+t+" added to Subscription.")}var o=e._parentOrParents;if(null===o)e._parentOrParents=this;else if(o instanceof n){if(o===this)return e;e._parentOrParents=[o,this]}else{if(-1!==o.indexOf(this))return e;o.push(this)}var i=this._subscriptions;return null===i?this._subscriptions=[e]:i.push(e),e},n.prototype.remove=function(n){var t=this._subscriptions;if(t){var e=t.indexOf(n);-1!==e&&t.splice(e,1)}},n.EMPTY=function(n){return n.closed=!0,n}(new n),n}();function w(n){return n.reduce((function(n,t){return n.concat(t instanceof g?t.errors:t)}),[])}var S=function(){return"function"==typeof Symbol?Symbol("rxSubscriber"):"@@rxSubscriber_"+Math.random()}(),x=function(n){function t(e,r,o){var i=n.call(this)||this;switch(i.syncErrorValue=null,i.syncErrorThrown=!1,i.syncErrorThrowable=!1,i.isStopped=!1,arguments.length){case 0:i.destination=y;break;case 1:if(!e){i.destination=y;break}if("object"==typeof e){e instanceof t?(i.syncErrorThrowable=e.syncErrorThrowable,i.destination=e,e.add(i)):(i.syncErrorThrowable=!0,i.destination=new E(i,e));break}default:i.syncErrorThrowable=!0,i.destination=new E(i,e,r,o)}return i}return r.__extends(t,n),t.prototype[S]=function(){return this},t.create=function(n,e,r){var o=new t(n,e,r);return o.syncErrorThrowable=!1,o},t.prototype.next=function(n){this.isStopped||this._next(n)},t.prototype.error=function(n){this.isStopped||(this.isStopped=!0,this._error(n))},t.prototype.complete=function(){this.isStopped||(this.isStopped=!0,this._complete())},t.prototype.unsubscribe=function(){this.closed||(this.isStopped=!0,n.prototype.unsubscribe.call(this))},t.prototype._next=function(n){this.destination.next(n)},t.prototype._error=function(n){this.destination.error(n),this.unsubscribe()},t.prototype._complete=function(){this.destination.complete(),this.unsubscribe()},t.prototype._unsubscribeAndRecycle=function(){var n=this._parentOrParents;return this._parentOrParents=null,this.unsubscribe(),this.closed=!1,this.isStopped=!1,this._parentOrParents=n,this},t}(_),E=function(n){function t(t,e,r,o){var i,u=n.call(this)||this;u._parentSubscriber=t;var s=u;return f(e)?i=e:e&&(i=e.next,r=e.error,o=e.complete,e!==y&&(f((s=Object.create(e)).unsubscribe)&&u.add(s.unsubscribe.bind(s)),s.unsubscribe=u.unsubscribe.bind(u))),u._context=s,u._next=i,u._error=r,u._complete=o,u}return r.__extends(t,n),t.prototype.next=function(n){if(!this.isStopped&&this._next){var t=this._parentSubscriber;h.useDeprecatedSynchronousErrorHandling&&t.syncErrorThrowable?this.__tryOrSetError(t,this._next,n)&&this.unsubscribe():this.__tryOrUnsub(this._next,n)}},t.prototype.error=function(n){if(!this.isStopped){var t=this._parentSubscriber,e=h.useDeprecatedSynchronousErrorHandling;if(this._error)e&&t.syncErrorThrowable?(this.__tryOrSetError(t,this._error,n),this.unsubscribe()):(this.__tryOrUnsub(this._error,n),this.unsubscribe());else if(t.syncErrorThrowable)e?(t.syncErrorValue=n,t.syncErrorThrown=!0):b(n),this.unsubscribe();else{if(this.unsubscribe(),e)throw n;b(n)}}},t.prototype.complete=function(){var n=this;if(!this.isStopped){var t=this._parentSubscriber;if(this._complete){var e=function(){return n._complete.call(n._context)};h.useDeprecatedSynchronousErrorHandling&&t.syncErrorThrowable?(this.__tryOrSetError(t,e),this.unsubscribe()):(this.__tryOrUnsub(e),this.unsubscribe())}else this.unsubscribe()}},t.prototype.__tryOrUnsub=function(n,t){try{n.call(this._context,t)}catch(e){if(this.unsubscribe(),h.useDeprecatedSynchronousErrorHandling)throw e;b(e)}},t.prototype.__tryOrSetError=function(n,t,e){if(!h.useDeprecatedSynchronousErrorHandling)throw new Error("bad call");try{t.call(this._context,e)}catch(r){return h.useDeprecatedSynchronousErrorHandling?(n.syncErrorValue=r,n.syncErrorThrown=!0,!0):(b(r),!0)}return!1},t.prototype._unsubscribe=function(){var n=this._parentSubscriber;this._context=null,this._parentSubscriber=null,n.unsubscribe()},t}(x);function T(n,t){return function(e){if("function"!=typeof n)throw new TypeError("argument is not a function. Are you looking for `mapTo()`?");return e.lift(new P(n,t))}}var P=function(){function n(n,t){this.project=n,this.thisArg=t}return n.prototype.call=function(n,t){return t.subscribe(new O(n,this.project,this.thisArg))},n}(),O=function(n){function t(t,e,r){var o=n.call(this,t)||this;return o.project=e,o.count=0,o.thisArg=r||o,o}return r.__extends(t,n),t.prototype._next=function(n){var t;try{t=this.project.call(this.thisArg,n,this.count++)}catch(e){return void this.destination.error(e)}this.destination.next(t)},t}(x),C=function(n){function t(){return null!==n&&n.apply(this,arguments)||this}return r.__extends(t,n),t.prototype.notifyNext=function(n,t,e,r,o){this.destination.next(t)},t.prototype.notifyError=function(n,t){this.destination.error(n)},t.prototype.notifyComplete=function(n){this.destination.complete()},t}(x),k=function(n){function t(t,e,r){var o=n.call(this)||this;return o.parent=t,o.outerValue=e,o.outerIndex=r,o.index=0,o}return r.__extends(t,n),t.prototype._next=function(n){this.parent.notifyNext(this.outerValue,n,this.outerIndex,this.index++,this)},t.prototype._error=function(n){this.parent.notifyError(n,this),this.unsubscribe()},t.prototype._complete=function(){this.parent.notifyComplete(this),this.unsubscribe()},t}(x);function j(){return"function"==typeof Symbol&&Symbol.iterator?Symbol.iterator:"@@iterator"}var M=j(),D=function(){return"function"==typeof Symbol&&Symbol.observable||"@@observable"}();var A=function(n){if(n&&"function"==typeof n[D])return i=n,function(n){var t=i[D]();if("function"!=typeof t.subscribe)throw new TypeError("Provided object does not correctly implement Symbol.observable");return t.subscribe(n)};if((t=n)&&"number"==typeof t.length&&"function"!=typeof t)return o=n,function(n){for(var t=0,e=o.length;t<e&&!n.closed;t++)n.next(o[t]);n.complete()};var t;if(function(n){return!!n&&"function"!=typeof n.subscribe&&"function"==typeof n.then}(n))return r=n,function(n){return r.then((function(t){n.closed||(n.next(t),n.complete())}),(function(t){return n.error(t)})).then(null,b),n};if(n&&"function"==typeof n[M])return e=n,function(n){for(var t=e[M]();;){var r=t.next();if(r.done){n.complete();break}if(n.next(r.value),n.closed)break}return"function"==typeof t.return&&n.add((function(){t.return&&t.return()})),n};var e,r,o,i,u=v(n)?"an invalid object":"'"+n+"'";throw new TypeError("You provided "+u+" where a stream was expected. You can provide an Observable, Promise, Array, or Iterable.")};function I(){}function N(n){return n?1===n.length?n[0]:function(t){return n.reduce((function(n,t){return t(n)}),t)}:I}var F=function(){function n(n){this._isScalar=!1,n&&(this._subscribe=n)}return n.prototype.lift=function(t){var e=new n;return e.source=this,e.operator=t,e},n.prototype.subscribe=function(n,t,e){var r=this.operator,o=function(n,t,e){if(n){if(n instanceof x)return n;if(n[S])return n[S]()}return n||t||e?new x(n,t,e):new x(y)}(n,t,e);if(o.add(r?r.call(o,this.source):this.source||h.useDeprecatedSynchronousErrorHandling&&!o.syncErrorThrowable?this._subscribe(o):this._trySubscribe(o)),h.useDeprecatedSynchronousErrorHandling&&o.syncErrorThrowable&&(o.syncErrorThrowable=!1,o.syncErrorThrown))throw o.syncErrorValue;return o},n.prototype._trySubscribe=function(n){try{return this._subscribe(n)}catch(t){h.useDeprecatedSynchronousErrorHandling&&(n.syncErrorThrown=!0,n.syncErrorValue=t),function(n){for(;n;){var t=n.destination;if(n.closed||n.isStopped)return!1;n=t&&t instanceof x?t:null}return!0}(n)?n.error(t):console.warn(t)}},n.prototype.forEach=function(n,t){var e=this;return new(t=R(t))((function(t,r){var o;o=e.subscribe((function(t){try{n(t)}catch(e){r(e),o&&o.unsubscribe()}}),r,t)}))},n.prototype._subscribe=function(n){var t=this.source;return t&&t.subscribe(n)},n.prototype[D]=function(){return this},n.prototype.pipe=function(){for(var n=[],t=0;t<arguments.length;t++)n[t]=arguments[t];return 0===n.length?this:N(n)(this)},n.prototype.toPromise=function(n){var t=this;return new(n=R(n))((function(n,e){var r;t.subscribe((function(n){return r=n}),(function(n){return e(n)}),(function(){return n(r)}))}))},n.create=function(t){return new n(t)},n}();function R(n){if(n||(n=h.Promise||Promise),!n)throw new Error("no Promise impl found");return n}var U=function(){function n(n){this.project=n}return n.prototype.call=function(n,t){return t.subscribe(new q(n,this.project))},n}(),q=function(n){function t(t,e){var r=n.call(this,t)||this;return r.project=e,r.index=0,r}return r.__extends(t,n),t.prototype._next=function(n){var t,e=this.index++;try{t=this.project(n,e)}catch(r){return void this.destination.error(r)}this._innerSub(t,n,e)},t.prototype._innerSub=function(n,t,e){var r=this.innerSubscription;r&&r.unsubscribe();var o=new k(this,t,e),i=this.destination;i.add(o),this.innerSubscription=function(n,t,e,r,o){if(void 0===o&&(o=new k(n,void 0,void 0)),!o.closed)return t instanceof F?t.subscribe(o):A(t)(o)}(this,n,0,0,o),this.innerSubscription!==o&&i.add(this.innerSubscription)},t.prototype._complete=function(){var t=this.innerSubscription;t&&!t.closed||n.prototype._complete.call(this),this.unsubscribe()},t.prototype._unsubscribe=function(){this.innerSubscription=null},t.prototype.notifyComplete=function(t){this.destination.remove(t),this.innerSubscription=null,this.isStopped&&n.prototype._complete.call(this)},t.prototype.notifyNext=function(n,t,e,r,o){this.destination.next(t)},t}(C),L=e("Vgaj"),H=function(){function n(){}return n.prototype.getNameFromId=function(n){switch(n){case"apple_itunes":return"Itunes";case"google_play_movies":return"Google Play";case"netflix":return"Netflix";default:return n.replace(/_/gi," ")}},n.prototype.getNetflixUrl=function(n){return o.WakoHttpRequestService.get(n.url,null,"3d").pipe(T((function(t){var e=(new DOMParser).parseFromString(t,"text/html").querySelector('meta[property="al:ios:url"]');return e&&e.getAttribute("content")?"http://www.netflix.com/watch/"+e.getAttribute("content").split("/").pop().split("?").shift():n.url})))},n.prototype.setKnownPlatformUrl=function(n){var t=this,e=[];return n.forEach((function(r){e.push("netflix"===r.id?t.getNetflixUrl(n[0]).pipe(T((function(n){return r.url=n,r}))):Object(L.of)(r))})),Object(L.forkJoin)(e)},n.prototype.getSources=function(n){var t=this,e=null;return n.movie?e="/movies/"+n.movie.traktId:n.show&&n.episode&&(e="/shows/"+n.show.traktId+"/seasons/"+n.episode.traktSeasonNumber+"/episodes/"+n.episode.traktNumber),o.WakoHttpRequestService.get("https://trakt.tv"+e,null,"3d").pipe(T((function(n){var e=[];try{(new DOMParser).parseFromString(n,"text/html").querySelectorAll(".sources a").forEach((function(n){e.push({id:n.getAttribute("data-source").trim(),name:t.getNameFromId(n.getAttribute("data-source").trim()),country:n.getAttribute("data-country").trim(),url:"https://trakt.tv"+n.getAttribute("link").trim(),logoUrl:"https://trakt.tv"+n.querySelector("img").getAttribute("data-original")})}))}catch(r){}return e})),function n(t,e){return"function"==typeof e?function(r){return r.pipe(n((function(n,r){return(o=t(n,r),o instanceof F?o:new F(A(o))).pipe(T((function(t,o){return e(n,t,r,o)})));var o})))}:function(n){return n.lift(new U(t))}}((function(n){return t.setKnownPlatformUrl(n)})))},n}(),V=function(){function n(n){this.callback=n}return n.prototype.call=function(n,t){return t.subscribe(new B(n,this.callback))},n}(),B=function(n){function t(t,e){var r=n.call(this,t)||this;return r.add(new _(e)),r}return r.__extends(t,n),t}(x),G=function(){function n(n,t){this.browserService=n,this.watchnowService=t,this.type="button",this.sources=[],this.loading=!0}return n.prototype.ngOnInit=function(){var n,t=this;this.watchnowService.getSources({movie:this.movie,show:this.show,episode:this.episode}).pipe((n=function(){return t.loading=!1},function(t){return t.lift(new V(n))})).subscribe((function(n){t.sources=n,console.log({sources:n})}))},n.prototype.goTo=function(n){"FirebasePlugin"in window&&window.FirebasePlugin.logEvent("addon_watchnow",{type:this.type,source:n.id}),this.browserService.open(n.url,!1)},n}(),z=function(n){function t(){return null!==n&&n.apply(this,arguments)||this}return r.__extends(t,n),t.pluginService=s,t.movieComponent=l,t.episodeComponent=c,t.showComponent=a,t}(o.PluginBaseModule),Q=e("z1lQ"),Z=e("0S4P");e("JAnZ");var K=p["\u0275crt"]({encapsulation:2,styles:[],data:{}});function Y(n){return p["\u0275vid"](2,[p["\u0275ncd"](null,0)],null,null)}var J=p["\u0275crt"]({encapsulation:2,styles:[],data:{}});function $(n){return p["\u0275vid"](2,[p["\u0275ncd"](null,0)],null,null)}var W=p["\u0275crt"]({encapsulation:2,styles:[],data:{}});function X(n){return p["\u0275vid"](2,[p["\u0275ncd"](null,0)],null,null)}var nn=e("GoKE"),tn=p["\u0275crt"]({encapsulation:0,styles:[[".container[_ngcontent-%COMP%]{display:flex;justify-content:space-evenly}.container[_ngcontent-%COMP%]   .button[_ngcontent-%COMP%]{width:100%}.container[_ngcontent-%COMP%]   .button.netflix[_ngcontent-%COMP%]{--background:#e50914}.container[_ngcontent-%COMP%]   .button.apple_itunes[_ngcontent-%COMP%]{--background:#999}.container[_ngcontent-%COMP%]   .button.google_play_movies[_ngcontent-%COMP%]{--background:#607d8b}"]],data:{}});function en(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"ion-spinner",[],null,null,null,$,J)),p["\u0275did"](1,49152,null,0,Q.IonSpinner,[p.ChangeDetectorRef,p.ElementRef,p.NgZone],null,null)],null,null)}function rn(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,3,"ion-text",[],null,null,null,X,W)),p["\u0275did"](1,49152,null,0,Q.IonText,[p.ChangeDetectorRef,p.ElementRef,p.NgZone],null,null),(n()(),p["\u0275ted"](2,0,["",""])),p["\u0275pid"](131072,i.TranslatePipe,[i.TranslateService,p.ChangeDetectorRef])],null,(function(n,t){n(t,2,0,p["\u0275unv"](t,2,0,p["\u0275nov"](t,3).transform("noSourceFound")))}))}function on(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,3,"ion-button",[["expand","block"]],[[8,"className",0]],[[null,"click"]],(function(n,t,e){var r=!0;return"click"===t&&(r=!1!==n.component.goTo(n.context.$implicit)&&r),r}),Y,K)),p["\u0275did"](1,49152,null,0,Q.IonButton,[p.ChangeDetectorRef,p.ElementRef,p.NgZone],{expand:[0,"expand"]},null),(n()(),p["\u0275ted"](2,0,[" "," "])),p["\u0275ppd"](3,1)],(function(n,t){n(t,1,0,"block")}),(function(n,t){n(t,0,0,p["\u0275inlineInterpolate"](1,"",t.context.$implicit.id,""));var e=p["\u0275unv"](t,2,0,n(t,3,0,p["\u0275nov"](t.parent,0),t.context.$implicit.name));n(t,2,0,e)}))}function un(n){return p["\u0275vid"](0,[p["\u0275pid"](0,Z.TitleCasePipe,[]),(n()(),p["\u0275eld"](1,0,null,null,6,"div",[["class","container"]],null,null,null,null,null)),(n()(),p["\u0275and"](16777216,null,null,1,null,en)),p["\u0275did"](3,16384,null,0,Z.NgIf,[p.ViewContainerRef,p.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),p["\u0275and"](16777216,null,null,1,null,rn)),p["\u0275did"](5,16384,null,0,Z.NgIf,[p.ViewContainerRef,p.TemplateRef],{ngIf:[0,"ngIf"]},null),(n()(),p["\u0275and"](16777216,null,null,1,null,on)),p["\u0275did"](7,278528,null,0,Z.NgForOf,[p.ViewContainerRef,p.TemplateRef,p.IterableDiffers],{ngForOf:[0,"ngForOf"]},null)],(function(n,t){var e=t.component;n(t,3,0,e.loading),n(t,5,0,!e.loading&&0===e.sources.length),n(t,7,0,e.sources)}),null)}function sn(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"wk-open-button",[],null,null,null,un,tn)),p["\u0275did"](1,114688,null,0,G,[nn.BrowserService,H],null,null)],(function(n,t){n(t,1,0)}),null)}var ln=p["\u0275ccf"]("wk-open-button",G,sn,{movie:"movie",show:"show",episode:"episode",type:"type"},{},[]),cn=p["\u0275crt"]({encapsulation:0,styles:[[""]],data:{}});function an(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"wk-open-button",[],null,null,null,un,tn)),p["\u0275did"](1,114688,null,0,G,[nn.BrowserService,H],{movie:[0,"movie"]},null)],(function(n,t){n(t,1,0,t.component.movie)}),null)}function pn(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"ng-component",[],null,null,null,an,cn)),p["\u0275did"](1,49152,null,0,l,[],null,null)],null,null)}var fn=p["\u0275ccf"]("ng-component",l,pn,{},{},[]),dn=p["\u0275crt"]({encapsulation:0,styles:[[""]],data:{}});function hn(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"wk-open-button",[],null,null,null,un,tn)),p["\u0275did"](1,114688,null,0,G,[nn.BrowserService,H],{show:[0,"show"],episode:[1,"episode"]},null)],(function(n,t){var e=t.component;n(t,1,0,e.show,e.episode)}),null)}function bn(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"ng-component",[],null,null,null,hn,dn)),p["\u0275did"](1,49152,null,0,c,[],null,null)],null,null)}var yn=p["\u0275ccf"]("ng-component",c,bn,{},{},[]),mn=p["\u0275crt"]({encapsulation:0,styles:[[""]],data:{}});function vn(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"wk-open-button",[],null,null,null,un,tn)),p["\u0275did"](1,114688,null,0,G,[nn.BrowserService,H],{show:[0,"show"]},null)],(function(n,t){n(t,1,0,t.component.show)}),null)}function gn(n){return p["\u0275vid"](0,[(n()(),p["\u0275eld"](0,0,null,null,1,"ng-component",[],null,null,null,vn,mn)),p["\u0275did"](1,49152,null,0,a,[],null,null)],null,null)}var _n=p["\u0275ccf"]("ng-component",a,gn,{},{},[]),wn=e("3xDq"),Sn=e("FsH7"),xn=p["\u0275cmf"](z,[],(function(n){return p["\u0275mod"]([p["\u0275mpd"](512,p.ComponentFactoryResolver,p["\u0275CodegenComponentFactoryResolver"],[[8,[fn,yn,_n,ln]],[3,p.ComponentFactoryResolver],p.NgModuleRef]),p["\u0275mpd"](4608,Z.NgLocalization,Z.NgLocaleLocalization,[p.LOCALE_ID,[2,Z["\u0275angular_packages_common_common_a"]]]),p["\u0275mpd"](4608,wn["\u0275angular_packages_forms_forms_o"],wn["\u0275angular_packages_forms_forms_o"],[]),p["\u0275mpd"](4608,Q.AngularDelegate,Q.AngularDelegate,[p.NgZone,p.ApplicationRef]),p["\u0275mpd"](4608,Q.ModalController,Q.ModalController,[Q.AngularDelegate,p.ComponentFactoryResolver,p.Injector]),p["\u0275mpd"](4608,Q.PopoverController,Q.PopoverController,[Q.AngularDelegate,p.ComponentFactoryResolver,p.Injector]),p["\u0275mpd"](5120,p.APP_INITIALIZER,(function(n,t,e){return[Q["\u0275f"](n,t,e)]}),[Q["\u0275a"],Z.DOCUMENT,p.NgZone]),p["\u0275mpd"](4608,i.TranslateLoader,i.TranslateFakeLoader,[]),p["\u0275mpd"](4608,i.TranslateCompiler,i.TranslateFakeCompiler,[]),p["\u0275mpd"](4608,i.TranslateParser,i.TranslateDefaultParser,[]),p["\u0275mpd"](4608,i.MissingTranslationHandler,i.FakeMissingTranslationHandler,[]),p["\u0275mpd"](4608,i.TranslateStore,i.TranslateStore,[]),p["\u0275mpd"](4608,i.TranslateService,i.TranslateService,[i.TranslateStore,i.TranslateLoader,i.TranslateCompiler,i.TranslateParser,i.MissingTranslationHandler,i.USE_DEFAULT_LANG,i.USE_STORE,i.USE_EXTEND,i.DEFAULT_LANGUAGE]),p["\u0275mpd"](4608,s,s,[i.TranslateService]),p["\u0275mpd"](4608,nn.BrowserService,nn.BrowserService,[Q.Platform]),p["\u0275mpd"](4608,Sn.ToastService,Sn.ToastService,[Q.ToastController,i.TranslateService]),p["\u0275mpd"](4608,H,H,[]),p["\u0275mpd"](1073742336,Z.CommonModule,Z.CommonModule,[]),p["\u0275mpd"](1073742336,wn["\u0275angular_packages_forms_forms_d"],wn["\u0275angular_packages_forms_forms_d"],[]),p["\u0275mpd"](1073742336,wn.FormsModule,wn.FormsModule,[]),p["\u0275mpd"](1073742336,Q.IonicModule,Q.IonicModule,[]),p["\u0275mpd"](1073742336,i.TranslateModule,i.TranslateModule,[]),p["\u0275mpd"](1073742336,z,z,[]),p["\u0275mpd"](256,Q["\u0275a"],void 0,[]),p["\u0275mpd"](256,i.USE_STORE,void 0,[]),p["\u0275mpd"](256,i.USE_DEFAULT_LANG,void 0,[]),p["\u0275mpd"](256,i.USE_EXTEND,void 0,[]),p["\u0275mpd"](256,i.DEFAULT_LANGUAGE,void 0,[])])}));e.d(t,"PluginModule",(function(){return z})),e.d(t,"PluginModuleNgFactory",(function(){return xn})),t.default=xn}})}));
+!(function (t, e) {
+  'object' == typeof exports && 'object' == typeof module
+    ? (module.exports = e(
+        require('ng.common'),
+        require('tslib'),
+        require('ng.forms'),
+        require('ngx-translate.core'),
+        require('rxjs'),
+        require('wako-app.mobile-sdk'),
+        require('ng.core'),
+        require('ionic.angular')
+      ))
+    : 'function' == typeof define && define.amd
+    ? define(['ng.common', 'tslib', 'ng.forms', 'ngx-translate.core', 'rxjs', 'wako-app.mobile-sdk', 'ng.core', 'ionic.angular'], e)
+    : 'object' == typeof exports
+    ? (exports.plugin = e(
+        require('ng.common'),
+        require('tslib'),
+        require('ng.forms'),
+        require('ngx-translate.core'),
+        require('rxjs'),
+        require('wako-app.mobile-sdk'),
+        require('ng.core'),
+        require('ionic.angular')
+      ))
+    : (t.plugin = e(
+        t['ng.common'],
+        t.tslib,
+        t['ng.forms'],
+        t['ngx-translate.core'],
+        t.rxjs,
+        t['wako-app.mobile-sdk'],
+        t['ng.core'],
+        t['ionic.angular']
+      ));
+})('undefined' != typeof self ? self : this, function (t, e, n, r, o, i, s, u) {
+  return (function (t) {
+    var e = {};
+    function n(r) {
+      if (e[r]) return e[r].exports;
+      var o = (e[r] = { i: r, l: !1, exports: {} });
+      return t[r].call(o.exports, o, o.exports, n), (o.l = !0), o.exports;
+    }
+    return (
+      (n.m = t),
+      (n.c = e),
+      (n.d = function (t, e, r) {
+        n.o(t, e) || Object.defineProperty(t, e, { enumerable: !0, get: r });
+      }),
+      (n.r = function (t) {
+        'undefined' != typeof Symbol && Symbol.toStringTag && Object.defineProperty(t, Symbol.toStringTag, { value: 'Module' }),
+          Object.defineProperty(t, '__esModule', { value: !0 });
+      }),
+      (n.t = function (t, e) {
+        if ((1 & e && (t = n(t)), 8 & e)) return t;
+        if (4 & e && 'object' == typeof t && t && t.__esModule) return t;
+        var r = Object.create(null);
+        if ((n.r(r), Object.defineProperty(r, 'default', { enumerable: !0, value: t }), 2 & e && 'string' != typeof t))
+          for (var o in t)
+            n.d(
+              r,
+              o,
+              function (e) {
+                return t[e];
+              }.bind(null, o)
+            );
+        return r;
+      }),
+      (n.n = function (t) {
+        var e =
+          t && t.__esModule
+            ? function () {
+                return t.default;
+              }
+            : function () {
+                return t;
+              };
+        return n.d(e, 'a', e), e;
+      }),
+      (n.o = function (t, e) {
+        return Object.prototype.hasOwnProperty.call(t, e);
+      }),
+      (n.p = ''),
+      n((n.s = 0))
+    );
+  })({
+    0: function (t, e, n) {
+      t.exports = n('zUnb');
+    },
+    '0S4P': function (e, n) {
+      e.exports = t;
+    },
+    '17wl': function (t, n) {
+      t.exports = e;
+    },
+    '3xDq': function (t, e) {
+      t.exports = n;
+    },
+    TGDj: function (t, e) {
+      t.exports = r;
+    },
+    Vgaj: function (t, e) {
+      t.exports = o;
+    },
+    doF0: function (t, e) {
+      t.exports = i;
+    },
+    vOrQ: function (t, e) {
+      t.exports = s;
+    },
+    z1lQ: function (t, e) {
+      t.exports = u;
+    },
+    zUnb: function (t, e, n) {
+      'use strict';
+      n.r(e),
+        n.d(e, 'PluginModule', function () {
+          return tt;
+        });
+      var r = n('17wl'),
+        o = n('0S4P'),
+        i = n('z1lQ'),
+        s = n('doF0'),
+        u = n('TGDj');
+      function c() {
+        for (var t = [], e = 0; e < arguments.length; e++) t[e] = arguments[e];
+        Object(s.wakoLog)('plugin.tmdb', t);
+      }
+      var a = n('vOrQ'),
+        p = (function (t) {
+          function e(e) {
+            var n = t.call(this) || this;
+            return (n.translate = e), n;
+          }
+          return (
+            Object(r.__extends)(e, t),
+            (e.prototype.initialize = function () {
+              c('plugin initialized');
+            }),
+            (e.prototype.afterInstall = function () {
+              c('plugin installed');
+            }),
+            (e.prototype.afterUpdate = function () {
+              c('plugin updated');
+            }),
+            (e.prototype.setTranslation = function (t, e) {
+              this.translate.setDefaultLang(t), this.translate.use(t), this.translate.setTranslation(t, e);
+            }),
+            (e.prototype.customAction = function (t, e) {}),
+            (e.ɵfac = function (t) {
+              return new (t || e)(a['\u0275\u0275inject'](u.TranslateService));
+            }),
+            (e.ɵprov = a['\u0275\u0275defineInjectable']({ token: e, factory: e.ɵfac })),
+            e
+          );
+        })(s.PluginBaseService);
+      function l(t) {
+        return 'function' == typeof t;
+      }
+      var f = !1,
+        h = {
+          Promise: void 0,
+          set useDeprecatedSynchronousErrorHandling(t) {
+            f = t;
+          },
+          get useDeprecatedSynchronousErrorHandling() {
+            return f;
+          }
+        };
+      function d(t) {
+        setTimeout(function () {
+          throw t;
+        }, 0);
+      }
+      var b = {
+          closed: !0,
+          next: function (t) {},
+          error: function (t) {
+            if (h.useDeprecatedSynchronousErrorHandling) throw t;
+            d(t);
+          },
+          complete: function () {}
+        },
+        y = (function () {
+          return (
+            Array.isArray ||
+            function (t) {
+              return t && 'number' == typeof t.length;
+            }
+          );
+        })();
+      function m(t) {
+        return null !== t && 'object' == typeof t;
+      }
+      var v = (function () {
+          function t(t) {
+            return (
+              Error.call(this),
+              (this.message = t
+                ? t.length +
+                  ' errors occurred during unsubscription:\n' +
+                  t
+                    .map(function (t, e) {
+                      return e + 1 + ') ' + t.toString();
+                    })
+                    .join('\n  ')
+                : ''),
+              (this.name = 'UnsubscriptionError'),
+              (this.errors = t),
+              this
+            );
+          }
+          return (t.prototype = Object.create(Error.prototype)), t;
+        })(),
+        g = (function () {
+          function t(t) {
+            (this.closed = !1), (this._parentOrParents = null), (this._subscriptions = null), t && (this._unsubscribe = t);
+          }
+          return (
+            (t.prototype.unsubscribe = function () {
+              var e;
+              if (!this.closed) {
+                var n = this._parentOrParents,
+                  r = this._unsubscribe,
+                  o = this._subscriptions;
+                if (((this.closed = !0), (this._parentOrParents = null), (this._subscriptions = null), n instanceof t)) n.remove(this);
+                else if (null !== n) for (var i = 0; i < n.length; ++i) n[i].remove(this);
+                if (l(r))
+                  try {
+                    r.call(this);
+                  } catch (c) {
+                    e = c instanceof v ? _(c.errors) : [c];
+                  }
+                if (y(o)) {
+                  i = -1;
+                  for (var s = o.length; ++i < s; ) {
+                    var u = o[i];
+                    if (m(u))
+                      try {
+                        u.unsubscribe();
+                      } catch (c) {
+                        (e = e || []), c instanceof v ? (e = e.concat(_(c.errors))) : e.push(c);
+                      }
+                  }
+                }
+                if (e) throw new v(e);
+              }
+            }),
+            (t.prototype.add = function (e) {
+              var n = e;
+              if (!e) return t.EMPTY;
+              switch (typeof e) {
+                case 'function':
+                  n = new t(e);
+                case 'object':
+                  if (n === this || n.closed || 'function' != typeof n.unsubscribe) return n;
+                  if (this.closed) return n.unsubscribe(), n;
+                  if (!(n instanceof t)) {
+                    var r = n;
+                    (n = new t())._subscriptions = [r];
+                  }
+                  break;
+                default:
+                  throw new Error('unrecognized teardown ' + e + ' added to Subscription.');
+              }
+              var o = n._parentOrParents;
+              if (null === o) n._parentOrParents = this;
+              else if (o instanceof t) {
+                if (o === this) return n;
+                n._parentOrParents = [o, this];
+              } else {
+                if (-1 !== o.indexOf(this)) return n;
+                o.push(this);
+              }
+              var i = this._subscriptions;
+              return null === i ? (this._subscriptions = [n]) : i.push(n), n;
+            }),
+            (t.prototype.remove = function (t) {
+              var e = this._subscriptions;
+              if (e) {
+                var n = e.indexOf(t);
+                -1 !== n && e.splice(n, 1);
+              }
+            }),
+            (t.EMPTY = (function (t) {
+              return (t.closed = !0), t;
+            })(new t())),
+            t
+          );
+        })();
+      function _(t) {
+        return t.reduce(function (t, e) {
+          return t.concat(e instanceof v ? e.errors : e);
+        }, []);
+      }
+      var w = (function () {
+          return 'function' == typeof Symbol ? Symbol('rxSubscriber') : '@@rxSubscriber_' + Math.random();
+        })(),
+        x = (function (t) {
+          function e(n, r, o) {
+            var i = t.call(this) || this;
+            switch (
+              ((i.syncErrorValue = null), (i.syncErrorThrown = !1), (i.syncErrorThrowable = !1), (i.isStopped = !1), arguments.length)
+            ) {
+              case 0:
+                i.destination = b;
+                break;
+              case 1:
+                if (!n) {
+                  i.destination = b;
+                  break;
+                }
+                if ('object' == typeof n) {
+                  n instanceof e
+                    ? ((i.syncErrorThrowable = n.syncErrorThrowable), (i.destination = n), n.add(i))
+                    : ((i.syncErrorThrowable = !0), (i.destination = new S(i, n)));
+                  break;
+                }
+              default:
+                (i.syncErrorThrowable = !0), (i.destination = new S(i, n, r, o));
+            }
+            return i;
+          }
+          return (
+            r.__extends(e, t),
+            (e.prototype[w] = function () {
+              return this;
+            }),
+            (e.create = function (t, n, r) {
+              var o = new e(t, n, r);
+              return (o.syncErrorThrowable = !1), o;
+            }),
+            (e.prototype.next = function (t) {
+              this.isStopped || this._next(t);
+            }),
+            (e.prototype.error = function (t) {
+              this.isStopped || ((this.isStopped = !0), this._error(t));
+            }),
+            (e.prototype.complete = function () {
+              this.isStopped || ((this.isStopped = !0), this._complete());
+            }),
+            (e.prototype.unsubscribe = function () {
+              this.closed || ((this.isStopped = !0), t.prototype.unsubscribe.call(this));
+            }),
+            (e.prototype._next = function (t) {
+              this.destination.next(t);
+            }),
+            (e.prototype._error = function (t) {
+              this.destination.error(t), this.unsubscribe();
+            }),
+            (e.prototype._complete = function () {
+              this.destination.complete(), this.unsubscribe();
+            }),
+            (e.prototype._unsubscribeAndRecycle = function () {
+              var t = this._parentOrParents;
+              return (
+                (this._parentOrParents = null),
+                this.unsubscribe(),
+                (this.closed = !1),
+                (this.isStopped = !1),
+                (this._parentOrParents = t),
+                this
+              );
+            }),
+            e
+          );
+        })(g),
+        S = (function (t) {
+          function e(e, n, r, o) {
+            var i,
+              s = t.call(this) || this;
+            s._parentSubscriber = e;
+            var u = s;
+            return (
+              l(n)
+                ? (i = n)
+                : n &&
+                  ((i = n.next),
+                  (r = n.error),
+                  (o = n.complete),
+                  n !== b &&
+                    (l((u = Object.create(n)).unsubscribe) && s.add(u.unsubscribe.bind(u)), (u.unsubscribe = s.unsubscribe.bind(s)))),
+              (s._context = u),
+              (s._next = i),
+              (s._error = r),
+              (s._complete = o),
+              s
+            );
+          }
+          return (
+            r.__extends(e, t),
+            (e.prototype.next = function (t) {
+              if (!this.isStopped && this._next) {
+                var e = this._parentSubscriber;
+                h.useDeprecatedSynchronousErrorHandling && e.syncErrorThrowable
+                  ? this.__tryOrSetError(e, this._next, t) && this.unsubscribe()
+                  : this.__tryOrUnsub(this._next, t);
+              }
+            }),
+            (e.prototype.error = function (t) {
+              if (!this.isStopped) {
+                var e = this._parentSubscriber,
+                  n = h.useDeprecatedSynchronousErrorHandling;
+                if (this._error)
+                  n && e.syncErrorThrowable
+                    ? (this.__tryOrSetError(e, this._error, t), this.unsubscribe())
+                    : (this.__tryOrUnsub(this._error, t), this.unsubscribe());
+                else if (e.syncErrorThrowable) n ? ((e.syncErrorValue = t), (e.syncErrorThrown = !0)) : d(t), this.unsubscribe();
+                else {
+                  if ((this.unsubscribe(), n)) throw t;
+                  d(t);
+                }
+              }
+            }),
+            (e.prototype.complete = function () {
+              var t = this;
+              if (!this.isStopped) {
+                var e = this._parentSubscriber;
+                if (this._complete) {
+                  var n = function () {
+                    return t._complete.call(t._context);
+                  };
+                  h.useDeprecatedSynchronousErrorHandling && e.syncErrorThrowable
+                    ? (this.__tryOrSetError(e, n), this.unsubscribe())
+                    : (this.__tryOrUnsub(n), this.unsubscribe());
+                } else this.unsubscribe();
+              }
+            }),
+            (e.prototype.__tryOrUnsub = function (t, e) {
+              try {
+                t.call(this._context, e);
+              } catch (n) {
+                if ((this.unsubscribe(), h.useDeprecatedSynchronousErrorHandling)) throw n;
+                d(n);
+              }
+            }),
+            (e.prototype.__tryOrSetError = function (t, e, n) {
+              if (!h.useDeprecatedSynchronousErrorHandling) throw new Error('bad call');
+              try {
+                e.call(this._context, n);
+              } catch (r) {
+                return h.useDeprecatedSynchronousErrorHandling ? ((t.syncErrorValue = r), (t.syncErrorThrown = !0), !0) : (d(r), !0);
+              }
+              return !1;
+            }),
+            (e.prototype._unsubscribe = function () {
+              var t = this._parentSubscriber;
+              (this._context = null), (this._parentSubscriber = null), t.unsubscribe();
+            }),
+            e
+          );
+        })(x);
+      function E(t, e) {
+        return function (n) {
+          if ('function' != typeof t) throw new TypeError('argument is not a function. Are you looking for `mapTo()`?');
+          return n.lift(new O(t, e));
+        };
+      }
+      var O = (function () {
+          function t(t, e) {
+            (this.project = t), (this.thisArg = e);
+          }
+          return (
+            (t.prototype.call = function (t, e) {
+              return e.subscribe(new j(t, this.project, this.thisArg));
+            }),
+            t
+          );
+        })(),
+        j = (function (t) {
+          function e(e, n, r) {
+            var o = t.call(this, e) || this;
+            return (o.project = n), (o.count = 0), (o.thisArg = r || o), o;
+          }
+          return (
+            r.__extends(e, t),
+            (e.prototype._next = function (t) {
+              var e;
+              try {
+                e = this.project.call(this.thisArg, t, this.count++);
+              } catch (n) {
+                return void this.destination.error(n);
+              }
+              this.destination.next(e);
+            }),
+            e
+          );
+        })(x),
+        P = (function (t) {
+          function e() {
+            return (null !== t && t.apply(this, arguments)) || this;
+          }
+          return (
+            r.__extends(e, t),
+            (e.prototype.notifyNext = function (t, e, n, r, o) {
+              this.destination.next(e);
+            }),
+            (e.prototype.notifyError = function (t, e) {
+              this.destination.error(t);
+            }),
+            (e.prototype.notifyComplete = function (t) {
+              this.destination.complete();
+            }),
+            e
+          );
+        })(x),
+        k = (function (t) {
+          function e(e, n, r) {
+            var o = t.call(this) || this;
+            return (o.parent = e), (o.outerValue = n), (o.outerIndex = r), (o.index = 0), o;
+          }
+          return (
+            r.__extends(e, t),
+            (e.prototype._next = function (t) {
+              this.parent.notifyNext(this.outerValue, t, this.outerIndex, this.index++, this);
+            }),
+            (e.prototype._error = function (t) {
+              this.parent.notifyError(t, this), this.unsubscribe();
+            }),
+            (e.prototype._complete = function () {
+              this.parent.notifyComplete(this), this.unsubscribe();
+            }),
+            e
+          );
+        })(x);
+      function T() {
+        return 'function' == typeof Symbol && Symbol.iterator ? Symbol.iterator : '@@iterator';
+      }
+      var I = T(),
+        M = (function () {
+          return ('function' == typeof Symbol && Symbol.observable) || '@@observable';
+        })();
+      var C = function (t) {
+        if (t && 'function' == typeof t[M])
+          return (
+            (i = t),
+            function (t) {
+              var e = i[M]();
+              if ('function' != typeof e.subscribe) throw new TypeError('Provided object does not correctly implement Symbol.observable');
+              return e.subscribe(t);
+            }
+          );
+        if ((e = t) && 'number' == typeof e.length && 'function' != typeof e)
+          return (
+            (o = t),
+            function (t) {
+              for (var e = 0, n = o.length; e < n && !t.closed; e++) t.next(o[e]);
+              t.complete();
+            }
+          );
+        var e;
+        if (
+          (function (t) {
+            return !!t && 'function' != typeof t.subscribe && 'function' == typeof t.then;
+          })(t)
+        )
+          return (
+            (r = t),
+            function (t) {
+              return (
+                r
+                  .then(
+                    function (e) {
+                      t.closed || (t.next(e), t.complete());
+                    },
+                    function (e) {
+                      return t.error(e);
+                    }
+                  )
+                  .then(null, d),
+                t
+              );
+            }
+          );
+        if (t && 'function' == typeof t[I])
+          return (
+            (n = t),
+            function (t) {
+              for (var e = n[I](); ; ) {
+                var r = e.next();
+                if (r.done) {
+                  t.complete();
+                  break;
+                }
+                if ((t.next(r.value), t.closed)) break;
+              }
+              return (
+                'function' == typeof e.return &&
+                  t.add(function () {
+                    e.return && e.return();
+                  }),
+                t
+              );
+            }
+          );
+        var n,
+          r,
+          o,
+          i,
+          s = m(t) ? 'an invalid object' : "'" + t + "'";
+        throw new TypeError(
+          'You provided ' + s + ' where a stream was expected. You can provide an Observable, Promise, Array, or Iterable.'
+        );
+      };
+      function D(t) {
+        return t;
+      }
+      function q(t) {
+        return 0 === t.length
+          ? D
+          : 1 === t.length
+          ? t[0]
+          : function (e) {
+              return t.reduce(function (t, e) {
+                return e(t);
+              }, e);
+            };
+      }
+      var F = (function () {
+        function t(t) {
+          (this._isScalar = !1), t && (this._subscribe = t);
+        }
+        return (
+          (t.prototype.lift = function (e) {
+            var n = new t();
+            return (n.source = this), (n.operator = e), n;
+          }),
+          (t.prototype.subscribe = function (t, e, n) {
+            var r = this.operator,
+              o = (function (t, e, n) {
+                if (t) {
+                  if (t instanceof x) return t;
+                  if (t[w]) return t[w]();
+                }
+                return t || e || n ? new x(t, e, n) : new x(b);
+              })(t, e, n);
+            if (
+              (o.add(
+                r
+                  ? r.call(o, this.source)
+                  : this.source || (h.useDeprecatedSynchronousErrorHandling && !o.syncErrorThrowable)
+                  ? this._subscribe(o)
+                  : this._trySubscribe(o)
+              ),
+              h.useDeprecatedSynchronousErrorHandling && o.syncErrorThrowable && ((o.syncErrorThrowable = !1), o.syncErrorThrown))
+            )
+              throw o.syncErrorValue;
+            return o;
+          }),
+          (t.prototype._trySubscribe = function (t) {
+            try {
+              return this._subscribe(t);
+            } catch (e) {
+              h.useDeprecatedSynchronousErrorHandling && ((t.syncErrorThrown = !0), (t.syncErrorValue = e)),
+                (function (t) {
+                  for (; t; ) {
+                    var e = t.destination;
+                    if (t.closed || t.isStopped) return !1;
+                    t = e && e instanceof x ? e : null;
+                  }
+                  return !0;
+                })(t)
+                  ? t.error(e)
+                  : console.warn(e);
+            }
+          }),
+          (t.prototype.forEach = function (t, e) {
+            var n = this;
+            return new (e = A(e))(function (e, r) {
+              var o;
+              o = n.subscribe(
+                function (e) {
+                  try {
+                    t(e);
+                  } catch (n) {
+                    r(n), o && o.unsubscribe();
+                  }
+                },
+                r,
+                e
+              );
+            });
+          }),
+          (t.prototype._subscribe = function (t) {
+            var e = this.source;
+            return e && e.subscribe(t);
+          }),
+          (t.prototype[M] = function () {
+            return this;
+          }),
+          (t.prototype.pipe = function () {
+            for (var t = [], e = 0; e < arguments.length; e++) t[e] = arguments[e];
+            return 0 === t.length ? this : q(t)(this);
+          }),
+          (t.prototype.toPromise = function (t) {
+            var e = this;
+            return new (t = A(t))(function (t, n) {
+              var r;
+              e.subscribe(
+                function (t) {
+                  return (r = t);
+                },
+                function (t) {
+                  return n(t);
+                },
+                function () {
+                  return t(r);
+                }
+              );
+            });
+          }),
+          (t.create = function (e) {
+            return new t(e);
+          }),
+          t
+        );
+      })();
+      function A(t) {
+        if ((t || (t = h.Promise || Promise), !t)) throw new Error('no Promise impl found');
+        return t;
+      }
+      var H = (function () {
+          function t(t) {
+            this.project = t;
+          }
+          return (
+            (t.prototype.call = function (t, e) {
+              return e.subscribe(new N(t, this.project));
+            }),
+            t
+          );
+        })(),
+        N = (function (t) {
+          function e(e, n) {
+            var r = t.call(this, e) || this;
+            return (r.project = n), (r.index = 0), r;
+          }
+          return (
+            r.__extends(e, t),
+            (e.prototype._next = function (t) {
+              var e,
+                n = this.index++;
+              try {
+                e = this.project(t, n);
+              } catch (r) {
+                return void this.destination.error(r);
+              }
+              this._innerSub(e, t, n);
+            }),
+            (e.prototype._innerSub = function (t, e, n) {
+              var r = this.innerSubscription;
+              r && r.unsubscribe();
+              var o = new k(this, e, n),
+                i = this.destination;
+              i.add(o),
+                (this.innerSubscription = (function (t, e, n, r, o) {
+                  if ((void 0 === o && (o = new k(t, void 0, void 0)), !o.closed)) return e instanceof F ? e.subscribe(o) : C(e)(o);
+                })(this, t, 0, 0, o)),
+                this.innerSubscription !== o && i.add(this.innerSubscription);
+            }),
+            (e.prototype._complete = function () {
+              var e = this.innerSubscription;
+              (e && !e.closed) || t.prototype._complete.call(this), this.unsubscribe();
+            }),
+            (e.prototype._unsubscribe = function () {
+              this.innerSubscription = null;
+            }),
+            (e.prototype.notifyComplete = function (e) {
+              this.destination.remove(e), (this.innerSubscription = null), this.isStopped && t.prototype._complete.call(this);
+            }),
+            (e.prototype.notifyNext = function (t, e, n, r, o) {
+              this.destination.next(e);
+            }),
+            e
+          );
+        })(P),
+        U = n('Vgaj'),
+        V = (function () {
+          function t() {}
+          return (
+            (t.prototype.getNameFromId = function (t) {
+              switch (t) {
+                case 'apple_itunes':
+                  return 'Itunes';
+                case 'google_play_movies':
+                  return 'Google Play';
+                case 'netflix':
+                  return 'Netflix';
+                default:
+                  return t.replace(/_/gi, ' ');
+              }
+            }),
+            (t.prototype.getNetflixUrl = function (t) {
+              return s.WakoHttpRequestService.get(t.url, null, '3d').pipe(
+                E(function (e) {
+                  var n = new DOMParser().parseFromString(e, 'text/html').querySelector('meta[property="al:ios:url"]');
+                  return n && n.getAttribute('content')
+                    ? 'http://www.netflix.com/watch/' + n.getAttribute('content').split('/').pop().split('?').shift()
+                    : t.url;
+                })
+              );
+            }),
+            (t.prototype.setKnownPlatformUrl = function (t) {
+              var e = this,
+                n = [];
+              return (
+                t.forEach(function (r) {
+                  n.push(
+                    'netflix' === r.id
+                      ? e.getNetflixUrl(t[0]).pipe(
+                          E(function (t) {
+                            return (r.url = t), r;
+                          })
+                        )
+                      : Object(U.of)(r)
+                  );
+                }),
+                Object(U.forkJoin)(n)
+              );
+            }),
+            (t.prototype.getSources = function (t) {
+              var e = this,
+                n = null;
+              return (
+                t.movie
+                  ? (n = '/movies/' + t.movie.traktId)
+                  : t.show &&
+                    t.episode &&
+                    (n = '/shows/' + t.show.traktId + '/seasons/' + t.episode.traktSeasonNumber + '/episodes/' + t.episode.traktNumber),
+                s.WakoHttpRequestService.get('https://trakt.tv' + n, null, '3d').pipe(
+                  E(function (t) {
+                    var n = [];
+                    try {
+                      new DOMParser()
+                        .parseFromString(t, 'text/html')
+                        .querySelectorAll('.sources a')
+                        .forEach(function (t) {
+                          n.push({
+                            id: t.getAttribute('data-source').trim(),
+                            name: e.getNameFromId(t.getAttribute('data-source').trim()),
+                            country: t.getAttribute('data-country').trim(),
+                            url: 'https://trakt.tv' + t.getAttribute('link').trim(),
+                            logoUrl: 'https://trakt.tv' + t.querySelector('img').getAttribute('data-original')
+                          });
+                        });
+                    } catch (r) {}
+                    return n;
+                  }),
+                  (function t(e, n) {
+                    return 'function' == typeof n
+                      ? function (r) {
+                          return r.pipe(
+                            t(function (t, r) {
+                              return ((o = e(t, r)), o instanceof F ? o : new F(C(o))).pipe(
+                                E(function (e, o) {
+                                  return n(t, e, r, o);
+                                })
+                              );
+                              var o;
+                            })
+                          );
+                        }
+                      : function (t) {
+                          return t.lift(new H(e));
+                        };
+                  })(function (t) {
+                    return e.setKnownPlatformUrl(t);
+                  })
+                )
+              );
+            }),
+            (t.ɵprov = a['\u0275\u0275defineInjectable']({
+              token: t,
+              factory: (t.ɵfac = function (e) {
+                return new (e || t)();
+              })
+            })),
+            t
+          );
+        })(),
+        B = (function () {
+          function t(t) {
+            this.callback = t;
+          }
+          return (
+            (t.prototype.call = function (t, e) {
+              return e.subscribe(new z(t, this.callback));
+            }),
+            t
+          );
+        })(),
+        z = (function (t) {
+          function e(e, n) {
+            var r = t.call(this, e) || this;
+            return r.add(new g(n)), r;
+          }
+          return r.__extends(e, t), e;
+        })(x);
+      function R(t, e) {
+        1 & t && a['\u0275\u0275element'](0, 'ion-spinner');
+      }
+      function Q(t, e) {
+        1 & t &&
+          (a['\u0275\u0275elementStart'](0, 'ion-text'),
+          a['\u0275\u0275text'](1),
+          a['\u0275\u0275pipe'](2, 'translate'),
+          a['\u0275\u0275elementEnd']()),
+          2 & t && (a['\u0275\u0275advance'](1), a['\u0275\u0275textInterpolate'](a['\u0275\u0275pipeBind1'](2, 1, 'noSourceFound')));
+      }
+      function Y(t, e) {
+        if (1 & t) {
+          var n = a['\u0275\u0275getCurrentView']();
+          a['\u0275\u0275elementStart'](0, 'ion-button', 3),
+            a['\u0275\u0275listener']('click', function () {
+              a['\u0275\u0275restoreView'](n);
+              var t = e.$implicit;
+              return a['\u0275\u0275nextContext']().goTo(t);
+            }),
+            a['\u0275\u0275text'](1),
+            a['\u0275\u0275pipe'](2, 'titlecase'),
+            a['\u0275\u0275elementEnd']();
+        }
+        if (2 & t) {
+          var r = e.$implicit;
+          a['\u0275\u0275classMap'](r.id),
+            a['\u0275\u0275advance'](1),
+            a['\u0275\u0275textInterpolate1'](' ', a['\u0275\u0275pipeBind1'](2, 4, r.name), ' ');
+        }
+      }
+      var G = (function () {
+          function t(t) {
+            (this.watchnowService = t), (this.type = 'button'), (this.sources = []), (this.loading = !0);
+          }
+          return (
+            (t.prototype.ngOnInit = function () {
+              var t,
+                e = this;
+              this.watchnowService
+                .getSources({ movie: this.movie, show: this.show, episode: this.episode })
+                .pipe(
+                  ((t = function () {
+                    return (e.loading = !1);
+                  }),
+                  function (e) {
+                    return e.lift(new B(t));
+                  })
+                )
+                .subscribe(function (t) {
+                  (e.sources = t), console.log({ sources: t });
+                });
+            }),
+            (t.prototype.goTo = function (t) {
+              'FirebasePlugin' in window && window.FirebasePlugin.logEvent('addon_watchnow', { type: this.type, source: t.id }),
+                s.BrowserService.open(t.url, !1);
+            }),
+            (t.ɵfac = function (e) {
+              return new (e || t)(a['\u0275\u0275directiveInject'](V));
+            }),
+            (t.ɵcmp = a['\u0275\u0275defineComponent']({
+              type: t,
+              selectors: [['wk-open-button']],
+              inputs: { movie: 'movie', show: 'show', episode: 'episode', type: 'type' },
+              decls: 4,
+              vars: 3,
+              consts: [
+                [1, 'container'],
+                [4, 'ngIf'],
+                ['expand', 'block', 3, 'class', 'click', 4, 'ngFor', 'ngForOf'],
+                ['expand', 'block', 3, 'click']
+              ],
+              template: function (t, e) {
+                1 & t &&
+                  (a['\u0275\u0275elementStart'](0, 'div', 0),
+                  a['\u0275\u0275template'](1, R, 1, 0, 'ion-spinner', 1),
+                  a['\u0275\u0275template'](2, Q, 3, 3, 'ion-text', 1),
+                  a['\u0275\u0275template'](3, Y, 3, 6, 'ion-button', 2),
+                  a['\u0275\u0275elementEnd']()),
+                  2 & t &&
+                    (a['\u0275\u0275advance'](1),
+                    a['\u0275\u0275property']('ngIf', e.loading),
+                    a['\u0275\u0275advance'](1),
+                    a['\u0275\u0275property']('ngIf', !e.loading && 0 === e.sources.length),
+                    a['\u0275\u0275advance'](1),
+                    a['\u0275\u0275property']('ngForOf', e.sources));
+              },
+              directives: [o.NgIf, o.NgForOf, i.IonSpinner, i.IonText, i.IonButton],
+              pipes: [u.TranslatePipe, o.TitleCasePipe],
+              styles: [
+                '.container[_ngcontent-%COMP%]{display:flex;justify-content:space-evenly}.container[_ngcontent-%COMP%]   .button[_ngcontent-%COMP%]{width:100%}.container[_ngcontent-%COMP%]   .button.netflix[_ngcontent-%COMP%]{--background:#e50914}.container[_ngcontent-%COMP%]   .button.apple_itunes[_ngcontent-%COMP%]{--background:#999}.container[_ngcontent-%COMP%]   .button.google_play_movies[_ngcontent-%COMP%]{--background:#607d8b}'
+              ]
+            })),
+            t
+          );
+        })(),
+        K = (function (t) {
+          function e() {
+            return (null !== t && t.apply(this, arguments)) || this;
+          }
+          return (
+            Object(r.__extends)(e, t),
+            (e.prototype.setMovie = function (t) {
+              this.movie = t;
+            }),
+            (e.ɵfac = function (t) {
+              return L(t || e);
+            }),
+            (e.ɵcmp = a['\u0275\u0275defineComponent']({
+              type: e,
+              selectors: [['ng-component']],
+              features: [a['\u0275\u0275InheritDefinitionFeature']],
+              decls: 1,
+              vars: 1,
+              consts: [[3, 'movie']],
+              template: function (t, e) {
+                1 & t && a['\u0275\u0275element'](0, 'wk-open-button', 0), 2 & t && a['\u0275\u0275property']('movie', e.movie);
+              },
+              directives: [G],
+              styles: ['']
+            })),
+            e
+          );
+        })(s.MovieDetailBaseComponent),
+        L = a['\u0275\u0275getInheritedFactory'](K),
+        W = (function (t) {
+          function e() {
+            return (null !== t && t.apply(this, arguments)) || this;
+          }
+          return (
+            Object(r.__extends)(e, t),
+            (e.prototype.setShowEpisode = function (t, e) {
+              (this.show = t), (this.episode = e);
+            }),
+            (e.ɵfac = function (t) {
+              return $(t || e);
+            }),
+            (e.ɵcmp = a['\u0275\u0275defineComponent']({
+              type: e,
+              selectors: [['ng-component']],
+              features: [a['\u0275\u0275InheritDefinitionFeature']],
+              decls: 1,
+              vars: 2,
+              consts: [[3, 'show', 'episode']],
+              template: function (t, e) {
+                1 & t && a['\u0275\u0275element'](0, 'wk-open-button', 0),
+                  2 & t && a['\u0275\u0275property']('show', e.show)('episode', e.episode);
+              },
+              directives: [G],
+              styles: ['']
+            })),
+            e
+          );
+        })(s.EpisodeDetailBaseComponent),
+        $ = a['\u0275\u0275getInheritedFactory'](W),
+        J = n('3xDq'),
+        X = (function (t) {
+          function e() {
+            return (null !== t && t.apply(this, arguments)) || this;
+          }
+          return (
+            Object(r.__extends)(e, t),
+            (e.prototype.setShow = function (t) {
+              this.show = t;
+            }),
+            (e.ɵfac = function (t) {
+              return Z(t || e);
+            }),
+            (e.ɵcmp = a['\u0275\u0275defineComponent']({
+              type: e,
+              selectors: [['ng-component']],
+              features: [a['\u0275\u0275InheritDefinitionFeature']],
+              decls: 1,
+              vars: 1,
+              consts: [[3, 'show']],
+              template: function (t, e) {
+                1 & t && a['\u0275\u0275element'](0, 'wk-open-button', 0), 2 & t && a['\u0275\u0275property']('show', e.show);
+              },
+              directives: [G],
+              styles: ['']
+            })),
+            e
+          );
+        })(s.ShowDetailBaseComponent),
+        Z = a['\u0275\u0275getInheritedFactory'](X),
+        tt = (function (t) {
+          function e() {
+            return (null !== t && t.apply(this, arguments)) || this;
+          }
+          return (
+            Object(r.__extends)(e, t),
+            (e.pluginService = p),
+            (e.movieComponent = K),
+            (e.episodeComponent = W),
+            (e.showComponent = X),
+            (e.ɵmod = a['\u0275\u0275defineNgModule']({ type: e })),
+            (e.ɵinj = a['\u0275\u0275defineInjector']({
+              factory: function (t) {
+                return et(t || e);
+              },
+              providers: [p, V],
+              imports: [[o.CommonModule, J.FormsModule, i.IonicModule.forRoot(), u.TranslateModule.forRoot()]]
+            })),
+            e
+          );
+        })(s.PluginBaseModule),
+        et = a['\u0275\u0275getInheritedFactory'](tt);
+      e.default = tt;
+    }
+  });
+});

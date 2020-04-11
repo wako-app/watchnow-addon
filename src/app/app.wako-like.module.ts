@@ -1,14 +1,13 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouteReuseStrategy} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
 
-import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {TranslateModule} from '@ngx-translate/core';
-import {IonicStorageModule} from '@ionic/storage';
-import {ModuleLoaderService, PluginLoaderService} from '@wako-app/mobile-sdk';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,12 +23,7 @@ import {ModuleLoaderService, PluginLoaderService} from '@wako-app/mobile-sdk';
     TranslateModule.forRoot(),
     IonicStorageModule.forRoot()
   ],
-  providers: [
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-    ModuleLoaderService,
-    PluginLoaderService
-  ],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]
 })
-export class AppWakoLikeModule {
-}
+export class AppWakoLikeModule {}
