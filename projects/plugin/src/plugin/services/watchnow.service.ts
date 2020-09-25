@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Episode, Movie, Show, WakoHttpRequestService} from '@wako-app/mobile-sdk';
-import {map, switchMap} from 'rxjs/operators';
-import {forkJoin, Observable, of} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Episode, Movie, Show, WakoHttpRequestService } from '@wako-app/mobile-sdk';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { forkJoin, Observable, of, throwError } from 'rxjs';
 
 export interface Source {
   id: string;
@@ -29,7 +29,13 @@ export class WatchnowService {
 
   private getNetflixUrl(source: Source) {
     return WakoHttpRequestService.get<string>(source.url, null, '3d').pipe(
-      map(html => {
+      catchError((err) => {
+        if (err.status === 302) {
+          return of(err.response);
+        }
+        return throwError(err);
+      }),
+      map((html) => {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
@@ -45,45 +51,44 @@ export class WatchnowService {
     );
   }
 
-
   private setKnownPlatformUrl(sources: Source[]) {
     const obss: Observable<Source>[] = [];
 
-    sources.forEach(source => {
+    sources.forEach((source) => {
       if (source.id === 'netflix') {
-        obss.push(this.getNetflixUrl(sources[0]).pipe(
-          map(netflixUrl => {
-            source.url = netflixUrl;
-            return source;
-          })
-        ));
+        obss.push(
+          this.getNetflixUrl(sources[0]).pipe(
+            map((netflixUrl) => {
+              source.url = netflixUrl;
+              return source;
+            })
+          )
+        );
       } else {
         obss.push(of(source));
       }
-
     });
 
     return forkJoin(obss);
-
   }
 
   getSources(options: { movie?: Movie; show?: Show; episode?: Episode }) {
     let url = null;
     if (options.movie) {
-      url = `/movies/${options.movie.traktId}`;
+      url = `/movies/${options.movie.ids.trakt}`;
     } else if (options.show && options.episode) {
-      url = `/shows/${options.show.traktId}/seasons/${options.episode.traktSeasonNumber}/episodes/${options.episode.traktNumber}`;
+      url = `/shows/${options.show.ids.trakt}/seasons/${options.episode.seasonNumber}/episodes/${options.episode.number}`;
     }
 
     return WakoHttpRequestService.get<string>('https://trakt.tv' + url, null, '3d').pipe(
-      map(html => {
+      map((html) => {
         const sources: Source[] = [];
         try {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
           const nodes = doc.querySelectorAll<HTMLAnchorElement>('.sources a');
 
-          nodes.forEach(node => {
+          nodes.forEach((node) => {
             sources.push({
               id: node.getAttribute('data-source').trim(),
               name: this.getNameFromId(node.getAttribute('data-source').trim()),
@@ -92,12 +97,11 @@ export class WatchnowService {
               logoUrl: 'https://trakt.tv' + node.querySelector<HTMLImageElement>('img').getAttribute('data-original')
             });
           });
-        } catch (e) {
-        }
+        } catch (e) {}
 
         return sources;
       }),
-      switchMap(sources => {
+      switchMap((sources) => {
         return this.setKnownPlatformUrl(sources);
       })
     );

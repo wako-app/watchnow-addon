@@ -1,5 +1,15 @@
 import { Injectable } from '@angular/core';
-import { PluginBaseService } from '@wako-app/mobile-sdk';
+import {
+  PluginBaseService,
+  Episode,
+  ExplorerFile,
+  ExplorerFolderItem,
+  KodiOpenParams,
+  Movie,
+  OpenMedia,
+  Show,
+  WakoFileActionButton
+} from '@wako-app/mobile-sdk';
 import { TranslateService } from '@ngx-translate/core';
 import { logData } from './tools';
 
@@ -27,6 +37,44 @@ export class PluginService extends PluginBaseService {
     this.translate.setTranslation(lang, translations);
   }
 
-  customAction(action: string, data: any): any {
+  customAction(action: string, data: any): any {}
+
+  beforeMovieMiddleware(movie: Movie): Promise<Movie> {
+    throw new Error('Method not implemented.');
+  }
+
+  afterMovieMiddleware(movie: Movie): Promise<Movie> {
+    throw new Error('Method not implemented.');
+  }
+
+  beforeShowMiddleware(show: Show): Promise<Show> {
+    throw new Error('Method not implemented.');
+  }
+
+  afterShowMiddleware(show: Show): Promise<Show> {
+    throw new Error('Method not implemented.');
+  }
+
+  beforeEpisodeMiddleware(show: Show, episode: Episode): Promise<Episode> {
+    throw new Error('Method not implemented.');
+  }
+
+  afterEpisodeMiddleware(show: Show, episode: Episode): Promise<Episode> {
+    throw new Error('Method not implemented.');
+  }
+
+  fetchExplorerFolderItem(): Promise<ExplorerFolderItem[]> {
+    throw new Error('Method not implemented.');
+  }
+
+  async getFileActionButtons(
+    file: ExplorerFile,
+    title?: string,
+    posterUrl?: string,
+    seekTo?: number,
+    openMedia?: OpenMedia,
+    kodiOpenParams?: KodiOpenParams
+  ): Promise<WakoFileActionButton[]> {
+    throw new Error('Method not implemented.');
   }
 }
