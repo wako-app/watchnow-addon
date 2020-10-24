@@ -1,7 +1,7 @@
 import { wakoLog } from '@wako-app/mobile-sdk';
 
 export function logData(...data: any) {
-  wakoLog('plugin.tmdb', data);
+  wakoLog('plugin.watchnow', data);
 }
 
 export function logEvent(eventName: string, data: {}) {
