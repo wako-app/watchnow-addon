@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Episode, Movie, Show, WakoHttpRequestService } from '@wako-app/mobile-sdk';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Episode, Movie, Show, WakoDebugService, WakoHttpRequestService } from '@wako-app/mobile-sdk';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { forkJoin, Observable, of, throwError } from 'rxjs';
 
 export interface Source {
@@ -36,6 +36,12 @@ export class WatchnowService {
         return throwError(err);
       }),
       map((html) => {
+        if (html.match('Found') && html.match(/href="([^"]*)/) !== null) {
+          const matches = html.match(/href="([^"]*)/);
+          if (matches[1]) {
+            return matches[1];
+          }
+        }
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
