@@ -6,8 +6,8 @@
   "description": "Add buttons to watch your movie or tv show on a streaming platform like iTunes, Netflix, Amazon...",
   "author": "wako",
   "actions": ["movies", "episodes"],
-  "entryPointV2": "/plugin.js",
-  "entryPoint": "https://raw.githubusercontent.com/wako-app/watchnow-addon/wako3/dist/plugin.js",
+  "entryPointV2": "https://raw.githubusercontent.com/wako-app/watchnow-addon/wako5/dist/plugin.js",
+  "entryPointV3": "/plugin.js",
   "languages": {
     "en": "/i18n/en.json"
   },
