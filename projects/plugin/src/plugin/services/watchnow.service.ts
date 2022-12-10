@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Episode, Movie, Show, WakoDebugService, WakoHttpRequestService } from '@wako-app/mobile-sdk';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { Episode, Movie, Show, WakoHttpRequestService } from '@wako-app/mobile-sdk';
 import { forkJoin, Observable, of, throwError } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 export interface Source {
   id: string;
@@ -28,7 +28,14 @@ export class WatchnowService {
   }
 
   private getNetflixUrl(source: Source) {
-    return WakoHttpRequestService.get<string>(source.url, null, '3d').pipe(
+    return WakoHttpRequestService.request<string>(
+      {
+        url: source.url,
+        method: 'GET',
+        responseType: 'text',
+      },
+      '3d'
+    ).pipe(
       catchError((err) => {
         if (err.status === 302) {
           return of(err.response);
@@ -100,7 +107,7 @@ export class WatchnowService {
               name: this.getNameFromId(node.getAttribute('data-source').trim()),
               country: node.getAttribute('data-country').trim(),
               url: 'https://trakt.tv' + node.getAttribute('link').trim(),
-              logoUrl: 'https://trakt.tv' + node.querySelector<HTMLImageElement>('img').getAttribute('data-original')
+              logoUrl: 'https://trakt.tv' + node.querySelector<HTMLImageElement>('img').getAttribute('data-original'),
             });
           });
         } catch (e) {}
