@@ -1,8 +1,4 @@
 .container {
-  display: flex;
-
-  justify-content: space-evenly;
-
   .button {
     width: 100%;
 
@@ -18,5 +14,4 @@
       --background: #607d8b;
     }
   }
-
 }
