@@ -33,8 +33,19 @@ export class WatchnowService {
         url: source.url,
         method: 'GET',
         responseType: 'text',
+        headers: {
+          Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.5',
+          'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+          'Upgrade-Insecure-Requests': '1',
+          'Sec-Fetch-Dest': 'document',
+          'Sec-Fetch-Mode': 'navigate',
+          'Sec-Fetch-Site': 'none',
+          'Sec-Fetch-User': '?1',
+        },
       },
-      '3d'
+      '3d',
     ).pipe(
       catchError((err) => {
         if (err.status === 302) {
@@ -60,7 +71,7 @@ export class WatchnowService {
           return `http://www.netflix.com/watch/${id}`;
         }
         return source.url;
-      })
+      }),
     );
   }
 
@@ -70,12 +81,16 @@ export class WatchnowService {
     sources.forEach((source) => {
       if (source.id === 'netflix') {
         obss.push(
-          this.getNetflixUrl(sources[0]).pipe(
+          this.getNetflixUrl(source).pipe(
+            catchError((err) => {
+              console.error(err);
+              return of(source.url);
+            }),
             map((netflixUrl) => {
               source.url = netflixUrl;
               return source;
-            })
-          )
+            }),
+          ),
         );
       } else {
         obss.push(of(source));
@@ -99,24 +114,46 @@ export class WatchnowService {
         try {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
-          const nodes = doc.querySelectorAll<HTMLAnchorElement>('.sources a');
+          const nodes = doc.querySelectorAll<HTMLAnchorElement>('.streaming-links .sources a');
 
           nodes.forEach((node) => {
-            sources.push({
-              id: node.getAttribute('data-source').trim(),
-              name: this.getNameFromId(node.getAttribute('data-source').trim()),
-              country: node.getAttribute('data-country').trim(),
-              url: 'https://trakt.tv' + node.getAttribute('link').trim(),
-              logoUrl: 'https://trakt.tv' + node.querySelector<HTMLImageElement>('img').getAttribute('data-original'),
-            });
+            try {
+              let dataSource = node.getAttribute('data-source')?.trim();
+              const country = node.getAttribute('data-country')?.trim();
+              const href = node.getAttribute('href')?.trim();
+              if (href === '#') {
+                return;
+              }
+              const img = node.querySelector<HTMLImageElement>('img')?.getAttribute('data-original');
+
+              if (!dataSource && href.match('/watchnow')) {
+                dataSource = href.split('/').pop();
+              }
+
+              const name = dataSource ? this.getNameFromId(dataSource) : 'N/A';
+              const url = 'https://trakt.tv' + href;
+              const logoUrl = 'https://trakt.tv' + img;
+
+              sources.push({
+                id: dataSource,
+                name,
+                country,
+                url,
+                logoUrl,
+              });
+            } catch (e) {
+              console.error(e);
+            }
           });
-        } catch (e) {}
+        } catch (e) {
+          console.error(e);
+        }
 
         return sources;
       }),
       switchMap((sources) => {
         return this.setKnownPlatformUrl(sources);
-      })
+      }),
     );
   }
 }

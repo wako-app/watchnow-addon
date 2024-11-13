@@ -1,7 +1,0 @@
-<div class="container">
-  <ion-spinner *ngIf="loading"></ion-spinner>
-  <ion-text *ngIf="!loading && sources.length === 0">{{ 'noSourceFound' | translate }}</ion-text>
-  <ion-button *ngFor="let source of sources" expand="block" class="{{ source.id }}" (click)="goTo(source)">
-    {{ source.name | titlecase }}
-  </ion-button>
-</div>
