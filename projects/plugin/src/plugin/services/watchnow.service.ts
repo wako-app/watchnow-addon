@@ -151,9 +151,9 @@ export class WatchnowService {
 
         return sources;
       }),
-      switchMap((sources) => {
-        return this.setKnownPlatformUrl(sources);
-      }),
+      // switchMap((sources) => {
+      //   return this.setKnownPlatformUrl(sources);
+      // }),
     );
   }
 }
