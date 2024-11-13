@@ -59,7 +59,6 @@ export class OpenButtonComponent implements OnInit {
       .pipe(finalize(() => (this.loading = false)))
       .subscribe((sources) => {
         this.sources = sources;
-        console.log({ sources });
       });
   }
 
