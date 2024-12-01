@@ -1,15 +1,15 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { environment } from './environments/environment';
-import { AppComponent } from './app/app.component';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { RouteReuseStrategy } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { IonicRouteStrategy } from '@ionic/angular/standalone';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { TranslateModule } from '@ngx-translate/core';
-import { AppRoutingModule } from './app/app-routing.module';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { WakoProviders } from '@wako-app/mobile-sdk';
-import { IonicRouteStrategy } from '@ionic/angular/standalone';
-import { RouteReuseStrategy } from '@angular/router';
+import { AppRoutingModule } from './app/app-routing.module';
+import { AppComponent } from './app/app.component';
+import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
