@@ -4,37 +4,102 @@ import { Source, WatchnowService } from './services/watchnow.service';
 import { finalize } from 'rxjs/operators';
 import { logEvent } from './services/tools';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgIf, NgFor, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { IonSpinner, IonText, IonButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'wk-open-button',
   styles: `
     .container {
+      .loading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 48px;
+      }
+
       .button {
+        margin-bottom: 8px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
         &.netflix {
-          --background: #e50914;
+          --ion-color-primary: #e50914;
+          --ion-color-primary-contrast: #ffffff;
+        }
+
+        &.prime {
+          --ion-color-primary: #00a8e1;
+          --ion-color-primary-contrast: #ffffff;
+        }
+
+        &.disney {
+          --ion-color-primary: #0063e5;
+          --ion-color-primary-contrast: #ffffff;
+        }
+
+        &.hulu {
+          --ion-color-primary: #1ce783;
+          --ion-color-primary-contrast: #000000;
+        }
+
+        &.hbo {
+          --ion-color-primary: #8f00ff;
+          --ion-color-primary-contrast: #ffffff;
         }
 
         &.apple_itunes {
-          --background: #999;
+          --ion-color-primary: #000000;
+          --ion-color-primary-contrast: #ffffff;
         }
 
         &.google_play_movies {
-          --background: #607d8b;
+          --ion-color-primary: #01875f;
+          --ion-color-primary-contrast: #ffffff;
         }
       }
     }
+
+    .button-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .source-logo {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
   `,
   standalone: true,
-  imports: [NgIf, NgFor, TitleCasePipe, TranslateModule, IonSpinner, IonText, IonButton],
+  imports: [TitleCasePipe, TranslateModule, IonSpinner, IonText, IonButton],
   template: `
     <div class="container">
-      <ion-spinner *ngIf="loading"></ion-spinner>
-      <ion-text *ngIf="!loading && sources.length === 0">{{ 'noSourceFound' | translate }}</ion-text>
-      <ion-button *ngFor="let source of sources" expand="block" class="{{ source.id }}" (click)="goTo(source)">
-        {{ source.name | titlecase }}
-      </ion-button>
+      @if (loading) {
+        <div class="loading-container">
+          <ion-spinner></ion-spinner>
+        </div>
+      } @else {
+        @if (!sources.length) {
+          <ion-text>{{ 'noSourceFound' | translate }}</ion-text>
+        } @else {
+          @for (source of sources; track source.id) {
+            <ion-button expand="block" fill="outline" [class]="source.id" [color]="'primary'" (click)="goTo(source)">
+              <div class="button-content">
+                @if (source.logoUrl) {
+                  <img [src]="source.logoUrl" [alt]="source.name" class="source-logo" />
+                }
+                <span>{{ source.name | titlecase }}</span>
+              </div>
+            </ion-button>
+          }
+        }
+      }
     </div>
   `,
 })
@@ -64,6 +129,7 @@ export class OpenButtonComponent implements OnInit {
 
   goTo(source: Source) {
     logEvent('addon_watchnow', { type: this.type, source: source.id });
-    BrowserService.open(source.url, false);
+    const url = source.url.startsWith('intent://') ? source.intentUrl || source.url : source.url;
+    BrowserService.open(url, false);
   }
 }

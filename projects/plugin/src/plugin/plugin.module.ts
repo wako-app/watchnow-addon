@@ -5,17 +5,20 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PluginBaseModule, WakoProviders } from '@wako-app/mobile-sdk';
 import { EpisodeButtonComponent } from './episode-button.component';
 import { MovieButtonComponent } from './movie-button.component';
-import { OpenButtonComponent } from './open-button.component';
+import { ShowButtonComponent } from './show-button.component';
 import { PluginService } from './services/plugin.service';
 import { WatchnowService } from './services/watchnow.service';
-import { ShowButtonComponent } from './show-button.component';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
-const components = [MovieButtonComponent, EpisodeButtonComponent, ShowButtonComponent, OpenButtonComponent];
-
 @NgModule({
-  imports: [CommonModule, FormsModule, TranslateModule.forRoot(), IonicStorageModule.forRoot({}), ...components],
+  imports: [
+    TranslateModule.forRoot(),
+    IonicStorageModule.forRoot({}),
+    MovieButtonComponent,
+    EpisodeButtonComponent,
+    ShowButtonComponent,
+  ],
   providers: [
     PluginService,
     WatchnowService,
@@ -25,7 +28,7 @@ const components = [MovieButtonComponent, EpisodeButtonComponent, ShowButtonComp
       backButtonText: '',
       mode: 'md',
     }),
-  ], // Add your services here. Do not use provideIn: 'root' in your services
+  ],
 })
 export class PluginModule extends PluginBaseModule {
   static override pluginService = PluginService;
