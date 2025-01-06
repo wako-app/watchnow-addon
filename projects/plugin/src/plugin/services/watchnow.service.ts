@@ -9,7 +9,7 @@ export interface Source {
   name: string;
   url: string;
   country: string;
-  logoUrl: string;
+  logoUrl?: string;
   intentUrl?: string;
   platform?: 'netflix' | 'prime' | 'disney' | 'hulu' | 'hbo' | 'watchhub';
 }

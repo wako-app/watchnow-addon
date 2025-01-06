@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BrowserService, Episode, Movie, Show } from '@wako-app/mobile-sdk';
+import { BrowserService, Episode, Movie, Show, WakoGlobal } from '@wako-app/mobile-sdk';
 import { Source, WatchnowService } from './services/watchnow.service';
 import { finalize } from 'rxjs/operators';
 import { logEvent } from './services/tools';
 import { TranslateModule } from '@ngx-translate/core';
 import { TitleCasePipe } from '@angular/common';
-import { IonSpinner, IonText, IonButton } from '@ionic/angular/standalone';
+import { IonSpinner, IonText, IonButton, ActionSheetController } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'wk-open-button',
@@ -79,28 +79,37 @@ import { IonSpinner, IonText, IonButton } from '@ionic/angular/standalone';
   standalone: true,
   imports: [TitleCasePipe, TranslateModule, IonSpinner, IonText, IonButton],
   template: `
-    <div class="container">
-      @if (loading) {
-        <div class="loading-container">
-          <ion-spinner></ion-spinner>
-        </div>
-      } @else {
-        @if (!sources.length) {
-          <ion-text>{{ 'noSourceFound' | translate }}</ion-text>
+    @if (!isTvLayout) {
+      <div class="container">
+        @if (loading) {
+          <div class="loading-container">
+            <ion-spinner></ion-spinner>
+          </div>
         } @else {
-          @for (source of sources; track source.id) {
-            <ion-button expand="block" fill="outline" [class]="source.id" [color]="'primary'" (click)="goTo(source)">
-              <div class="button-content">
-                @if (source.logoUrl) {
-                  <img [src]="source.logoUrl" [alt]="source.name" class="source-logo" />
-                }
-                <span>{{ source.name | titlecase }}</span>
-              </div>
-            </ion-button>
+          @if (!sources.length) {
+            <ion-text>{{ 'noSourceFound' | translate }}</ion-text>
+          } @else {
+            @for (source of sources; track source.id) {
+              <ion-button expand="block" fill="outline" [class]="source.id" [color]="'primary'" (click)="goTo(source)">
+                <div class="button-content">
+                  @if (source.logoUrl) {
+                    <img [src]="source.logoUrl" [alt]="source.name" class="source-logo" />
+                  }
+                  <span>{{ source.name | titlecase }}</span>
+                </div>
+              </ion-button>
+            }
           }
         }
-      }
-    </div>
+      </div>
+    } @else {
+      <ion-button expand="block" [disabled]="loading || !sources.length" (click)="showSourcesActionSheet()">
+        @if (loading) {
+          <ion-spinner></ion-spinner>
+        }
+        <span>{{ 'watchNow' | translate }} {{ !loading && sources.length ? '(' + sources.length + ')' : '' }}</span>
+      </ion-button>
+    }
   `,
 })
 export class OpenButtonComponent implements OnInit {
@@ -109,10 +118,15 @@ export class OpenButtonComponent implements OnInit {
   @Input() episode: Episode;
   @Input() type: 'button' = 'button';
 
+  isTvLayout = WakoGlobal.isTvLayout;
+
   sources: Source[] = [];
   loading = true;
 
-  constructor(private watchnowService: WatchnowService) {}
+  constructor(
+    private watchnowService: WatchnowService,
+    private actionSheetCtrl: ActionSheetController,
+  ) {}
 
   ngOnInit(): void {
     this.watchnowService
@@ -131,5 +145,23 @@ export class OpenButtonComponent implements OnInit {
     logEvent('addon_watchnow', { type: this.type, source: source.id });
     const url = source.url.startsWith('intent://') ? source.intentUrl || source.url : source.url;
     BrowserService.open(url, false);
+  }
+
+  async showSourcesActionSheet() {
+    if (this.loading || !this.sources.length) {
+      return;
+    }
+
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Source',
+      buttons: this.sources.map((source) => ({
+        text: source.name,
+        handler: () => {
+          this.goTo(source);
+        },
+      })),
+    });
+
+    await actionSheet.present();
   }
 }
