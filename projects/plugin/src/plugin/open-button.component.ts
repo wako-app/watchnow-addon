@@ -76,7 +76,6 @@ import { IonSpinner, IonText, IonButton, ActionSheetController } from '@ionic/an
       object-fit: contain;
     }
   `,
-  standalone: true,
   imports: [TitleCasePipe, TranslateModule, IonSpinner, IonText, IonButton],
   template: `
     @if (!isTvLayout) {

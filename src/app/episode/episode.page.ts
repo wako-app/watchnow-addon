@@ -16,7 +16,6 @@ import {
   selector: 'app-tab1',
   templateUrl: 'episode.page.html',
   styleUrls: ['episode.page.scss'],
-  standalone: true,
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItemSliding, IonItem, IonItemOptions],
 })
 export class EpisodePage implements OnInit {

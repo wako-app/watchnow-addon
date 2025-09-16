@@ -3,7 +3,6 @@ import { Movie, MovieDetailBaseComponent } from '@wako-app/mobile-sdk';
 import { OpenButtonComponent } from './open-button.component';
 
 @Component({
-  standalone: true,
   imports: [OpenButtonComponent],
   template: `<wk-open-button [movie]="movie"></wk-open-button>`,
 })

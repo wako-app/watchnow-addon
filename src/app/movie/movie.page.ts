@@ -7,7 +7,6 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   selector: 'app-tab1',
   templateUrl: 'movie.page.html',
   styleUrls: ['movie.page.scss'],
-  standalone: true,
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class MoviePage implements OnInit {

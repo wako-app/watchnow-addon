@@ -6,7 +6,6 @@ import { IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent 
   selector: 'wk-addon-detail',
   templateUrl: './addon-detail.component.html',
   styleUrls: ['./addon-detail.component.scss'],
-  standalone: true,
   imports: [IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent],
 })
 export class AddonDetailComponent implements OnInit {

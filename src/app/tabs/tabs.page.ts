@@ -7,7 +7,6 @@ import { IonTabs, IonTabBar, IonTabButton, IonIcon } from '@ionic/angular/standa
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss'],
-  standalone: true,
   imports: [IonTabs, IonTabBar, IonTabButton, IonIcon],
 })
 export class TabsPage {
